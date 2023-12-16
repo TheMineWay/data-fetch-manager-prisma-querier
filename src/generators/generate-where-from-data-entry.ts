@@ -15,6 +15,6 @@ export async function generateWhereFromDataEntry<T extends object>(
   }
 
   return {
-    AND: [searchFilter, where],
+    AND: [searchFilter ?? null, where ?? null],
   };
 }
