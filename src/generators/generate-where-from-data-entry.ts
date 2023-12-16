@@ -9,7 +9,7 @@ export async function generateWhereFromDataEntry<T extends object>(
   // Process search
   const searchFilter: { [k: string]: { contains: string } }[] = [];
 
-  const searchText = filters?.search.trim();
+  const searchText = filters?.search?.trim();
   if (searchText) {
     for (const key of modelDefinition.getSearchableKeys()) {
       searchFilter.push({ [key.toString()]: { contains: searchText } });
