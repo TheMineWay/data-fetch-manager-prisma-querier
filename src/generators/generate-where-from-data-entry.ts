@@ -15,6 +15,8 @@ export async function generateWhereFromDataEntry<T extends object>(
   }
 
   return {
-    AND: [searchFilter ?? null, where ?? null],
+    AND: [searchFilter, Object.keys(where).length > 0 ? where : null].filter(
+      (v) => !!v
+    ),
   };
 }
