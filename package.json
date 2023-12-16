@@ -1,0 +1,26 @@
+{
+  "name": "data-fetch-manager-prisma-querier",
+  "version": "1.0.0",
+  "description": "Prisma connector for data fetch manager .",
+  "repository": "https://github.com/TheMineWay/data-fetch-manager-prisma-querier",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "TheMineWay",
+  "license": "MIT",
+  "devDependencies": {
+    "data-fetch-manager-entry-service": "^1.1.0",
+    "typescript": "^5.2.2"
+  },
+  "files": [
+    "dist",
+    "dist/**"
+  ],
+  "dependencies": {
+    "@types/node": "^20.4.4"
+  }
+}
