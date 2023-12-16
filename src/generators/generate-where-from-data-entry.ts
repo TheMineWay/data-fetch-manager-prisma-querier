@@ -7,18 +7,22 @@ export async function generateWhereFromDataEntry<T extends object>(
   where?: object
 ) {
   // Process search
-  const searchFilter = [];
-  if (filters?.search) {
+  const searchFilter: { [k: string]: { contains: string } }[] = [];
+
+  const searchText = filters?.search.trim();
+  if (searchText) {
     for (const key of modelDefinition.getSearchableKeys()) {
-      searchFilter.push({ [key.toString()]: { contains: filters.search } });
+      searchFilter.push({ [key.toString()]: { contains: searchText } });
     }
   }
 
   return {
     AND: [
-      {
-        OR: [searchFilter],
-      },
+      searchFilter.length > 0
+        ? {
+            OR: searchFilter,
+          }
+        : null,
       where && Object.keys(where).length > 0 ? where : null,
     ].filter((v) => !!v),
   };
