@@ -11,7 +11,7 @@ export async function generateQueryFromDataEntry<T extends object>(
   modelDefinition: DataModelDefinition<T>,
   options?: Options
 ) {
-  return {
+  const query = {
     where: await generateWhereFromDataEntry(
       entryObject,
       modelDefinition,
@@ -22,5 +22,12 @@ export async function generateQueryFromDataEntry<T extends object>(
     orderBy: entryObject.sort?.map(([key, mode]) => ({
       [key]: mode,
     })),
+  };
+
+  const { skip, take, ...countQuery } = query;
+
+  return {
+    query,
+    countQuery,
   };
 }
